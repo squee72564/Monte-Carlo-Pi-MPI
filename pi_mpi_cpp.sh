@@ -10,4 +10,4 @@
 
 module load openmpi/2.1.2
 
-/opt/openmpi-2.1.2/bin/mpirun pi_mpi
+/opt/openmpi-2.1.2/bin/mpirun pi_mpi.exe

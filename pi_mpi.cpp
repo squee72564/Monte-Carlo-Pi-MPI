@@ -4,7 +4,11 @@
 #include <cstdlib>
 #include <cstdio>
 
-#define POINTS 1000000
+#ifndef M_PI
+#	define M_PI 3.14159265358979323846
+#endif
+
+#define POINTS 1000000000 
 
 int main(int argc, char *argv[]) {
 	int myId = 0;
@@ -63,9 +67,12 @@ int main(int argc, char *argv[]) {
 		double ratio = double(totalSum)/POINTS;
 		double pi = 4.0f * ratio;
 		double runTime = MPI_Wtime() - startwtime;
-		printf("Execution time (sec) = %f\nTotal points in circle = %d\nEstimated Pi = %f\n", runTime, totalSum, pi);
-		printf("Difference between estimated pi and real pi = %f\n", abs(pi-M_PI));
-		printf("Percent error for estimated pi = %.5f%\n", (abs(pi-M_PI)/M_PI * 100));
+		printf("Execution time (sec) = %f\n", runTime);
+		printf("Total points in circle = %d\nEstimated Pi = %.20f\n", totalSum, pi);
+		printf("Difference between estimated pi and M_PI =  %.20f\n",
+			fabs(pi-M_PI));
+		printf("Percent error for estimated pi = %.5f%\n",
+			(fabs(pi-M_PI))/M_PI * 100.0);
 	}
 
 	MPI_Finalize();
